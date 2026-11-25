@@ -1,0 +1,15 @@
+---
+# Nakijken zonder JavaScript: de form POST gaat naar de Netlify Function /controleer,
+# die doorstuurt naar een van deze vooraf gegenereerde pagina's (dynamische route, toch SSG).
+layout: base.njk
+pagination:
+  data: quiz.answerPages
+  size: 1
+  alias: checked
+permalink: "/antwoord/{{ checked.questionId }}/{{ checked.chosenKey | lower }}/"
+title: Quiz · 11ty
+description: Test je kennis over de collectie van Teylers Museum.
+noindex: true
+eleventyExcludeFromCollections: true
+---
+{% include "quiz.njk" %}

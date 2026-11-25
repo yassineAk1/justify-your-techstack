@@ -1,0 +1,14 @@
+[build]
+  command = "npm run build"
+  publish = "_site"
+
+# Zelfde Node-versie op alle drie de branches, voor een eerlijke vergelijking
+[build.environment]
+  NODE_VERSION = "22"
+
+# Lokaal: `netlify dev` start de 11ty-server (8080) en zet de function op /controleer ervoor (8888)
+[dev]
+  framework = "#custom"
+  command = "npm start"
+  targetPort = 8080
+  port = 8888
