@@ -1,0 +1,40 @@
+{#
+	Eén form per vraag, met dezelfde HTML als Quiz.svelte, QuizQuestion.svelte en AnswerOption.svelte.
+	`checked` ({ questionId, chosenKey }) bestaat alleen op de antwoordpagina's, dus na nakijken zonder JavaScript.
+#}
+<section>
+	{%- for question in quiz.questions %}
+	{%- set correctKey = quiz.answers[question.id].correctKey %}
+	{%- if checked and checked.questionId == question.id %}{% set chosenKey = checked.chosenKey %}{% else %}{% set chosenKey = "" %}{% endif %}
+	{%- set isCorrect = chosenKey == correctKey %}
+	<form method="POST" action="/controleer">
+		<header>
+			<p>Vraag {{ loop.index }}</p>
+			<p>{% if not chosenKey %}Nog niet beantwoord{% elif isCorrect %}Goed beantwoord{% else %}Fout, probeer het nog eens{% endif %}</p>
+		</header>
+
+		<fieldset>
+			<legend>{{ question.question }}</legend>
+			{%- for option in question.options %}
+			{%- set result = ("correct" if isCorrect else "incorrect") if option.key == chosenKey else "" %}
+			<label{% if result %} class="{{ result }}"{% endif %}>
+				<input type="radio" name="question-{{ question.id }}" value="{{ option.key }}" required{% if result %} checked{% endif %}>
+				<span>{{ option.key }}</span>
+				{{ option.answer }}
+			</label>
+			{%- endfor %}
+		</fieldset>
+
+		<button type="submit" name="questionId" value="{{ question.id }}">Controleer</button>
+
+		<output>
+			{%- if chosenKey %}
+			<p class="{{ 'correct' if isCorrect else 'incorrect' }}">{{ chosenKey }} {{ question.explanation_correct if isCorrect else question.explanation_wrong }}</p>
+			{%- endif %}
+		</output>
+	</form>
+	{%- endfor %}
+</section>
+
+{# Antwoorden + uitleg voor quiz.js. Bewuste keuze: het goede antwoord is zo te zien met view-source. #}
+<script type="application/json" id="quiz-answers">{{ quiz.answers | json | safe }}</script>
