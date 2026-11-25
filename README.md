@@ -1,5 +1,7 @@
 # justify-your-techstack: 11ty
 
+**Live:** https://quiz-11ty.netlify.app · **Issue:** [#2](https://github.com/yassineAk1/justify-your-techstack/issues/2)
+
 Onderzoek naar 11ty, Next.js en Nuxt voor de leertaak [Choices, Choices – The Tech-stack](https://github.com/fdnd-task/choices-choices-the-tech-stack/wiki). Elk framework heeft een eigen branch: `2-11ty` (deze), `3-next` en `4-nuxt`.
 
 In elke branch staat dezelfde quiz: de Teylers-vragen uit Directus. Je kiest een antwoord, kijkt het na en krijgt uitleg. De referentie is de SvelteKit-quiz uit [`fdnd-agency/q42museumplatform`](https://github.com/fdnd-agency/q42museumplatform) (branch `dev`). HTML-structuur en CSS zijn in alle versies hetzelfde, zodat alleen het framework verschilt.
