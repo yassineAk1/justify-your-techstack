@@ -1,0 +1,14 @@
+{
+  "name": "quiz-11ty",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Teylers-quiz in 11ty, voor de vergelijking 11ty / Next.js / Nuxt",
+  "type": "module",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.8"
+  }
+}
