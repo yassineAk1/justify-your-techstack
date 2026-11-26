@@ -2,6 +2,7 @@
 	Eén form per vraag, met dezelfde HTML als Quiz.svelte, QuizQuestion.svelte en AnswerOption.svelte.
 	`checked` ({ questionId, chosenKey }) bestaat alleen op de antwoordpagina's, dus na nakijken zonder JavaScript.
 #}
+<h1>Quiz</h1>
 <section>
 	{%- for question in quiz.questions %}
 	{%- set correctKey = quiz.answers[question.id].correctKey %}
