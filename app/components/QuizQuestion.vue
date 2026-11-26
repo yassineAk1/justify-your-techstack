@@ -2,12 +2,14 @@
 const props = defineProps({
 	question: { type: Object, required: true },
 	number: { type: Number, required: true },
+	// Alleen op een antwoordpagina: de letter die zonder JavaScript is nagekeken
+	initialKey: { type: String, default: '' },
 });
 
 // De radio die nu is aangeklikt (v-model)
-const selected = ref('');
+const selected = ref(props.initialKey);
 // De letter die is nagekeken: pas gevuld na Controleer, dus feedback verschijnt pas na een bewuste klik
-const checkedKey = ref('');
+const checkedKey = ref(props.initialKey);
 // Het <output>-element, om er na het nakijken naartoe te scrollen
 const output = useTemplateRef('output');
 

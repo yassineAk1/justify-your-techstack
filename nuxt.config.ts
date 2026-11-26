@@ -30,4 +30,20 @@ export default defineNuxtConfig({
 	routeRules: {
 		'/': { prerender: true },
 	},
+
+	hooks: {
+		// Nakijken zonder JavaScript: zet de 20 antwoordpagina's op de prerender-lijst.
+		// Nuxt vindt pagina's door links te volgen, en niets linkt naar /antwoord/…
+		async 'prerender:routes'({ routes }: { routes: Set<string> }) {
+			const response = await fetch(quizEndpoint);
+			if (!response.ok) throw new Error(`Directus gaf status ${response.status}`);
+			const { data: questions } = await response.json();
+
+			for (const question of questions) {
+				for (const option of question.options) {
+					routes.add(`/antwoord/${question.id}/${option.key.toLowerCase()}/`);
+				}
+			}
+		},
+	},
 });
