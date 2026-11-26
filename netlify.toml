@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Zelfde Node-versie op alle drie de branches, voor een eerlijke vergelijking
+[build.environment]
+  NODE_VERSION = "22"

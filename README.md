@@ -23,7 +23,7 @@ npm run build     # productieversie (lokaal in .output/, op Netlify in dist/)
 npm run preview   # draait de productieversie lokaal
 ```
 
-Nuxt 4.7 met Vue 3.5. Netlify herkent Nuxt zelf: build `npm run build`, publish `dist`.
+Nuxt 4.7 met Vue 3.5. De Netlify-instellingen staan in [`netlify.toml`](netlify.toml): build `npm run build`, publish `dist`, Node 22 (net als de andere branches).
 
 ## Hoe het werkt
 
@@ -54,7 +54,7 @@ flowchart TD
 - **Het goede antwoord staat in de bron.** Nuxt zet de data uit `useFetch` in `_payload.json`, inclusief `is_correct`. Dat bestand wordt ook zonder JS geladen (`<link rel="preload">`). In de SvelteKit-versie zit het in de hydratiedata. Voor een museumquiz zonder punten is dat acceptabel.
 - **Zonder JS verandert de URL** naar `/antwoord/…`. In SvelteKit blijft die `/`. Er zit ook één extra stap in: de redirect.
 - **Twee componenten** (`Quiz`, `QuizQuestion`), zoals `Quiz.svelte` en `QuizQuestion.svelte` in de referentie. De antwoordoptie zit hier in `QuizQuestion`.
-- **`vue-router` staat vast op 5.5.1.** Versie 5.5.2 (26-11-2026) laat het prerenderen falen met `__VUE_OPTIONS_API__ is not defined`.
+- **`vue-router` 5.5.2 brak de build.** Die versie (26-11-2026) liet het prerenderen falen met `__VUE_OPTIONS_API__ is not defined`. Daarom stond `vue-router` even vast op 5.5.1. Zes uur later kwam [5.5.3](https://github.com/vuejs/router/releases/tag/v5.5.3) met de fix, dus nu staat er weer `^5.5.3`.
 - **Alleen Inter**, met dezelfde `style.css` als de andere branches. Nuxt geeft CSS en fonts een hash in de bestandsnaam.
 - **De pagina heeft een eigen `<h1>`.** In de referentie zit de quiz onder een hero.
 
